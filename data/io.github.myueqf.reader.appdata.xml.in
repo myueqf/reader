@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.myueqf.reader</id>
+  <name>阅读</name>
+  <summary>一个简单好看的电子书阅读器~</summary>
+  <description>
+    <p>这是一个简单干净好看的txt电子书阅读器~</p>
+    <ul>
+      <li>轻量级,只支持txt格式电子书~</li>
+      <li>简单~没有多余功能~</li>
+      <li>第三条想好了再写,感觉有第三行好看嗷...</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">io.github.myueqf.reader.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/myueqf/reader/main/screenshots/main.png</image>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://github.com/myueqf/reader</url>
+  <url type="bugtracker">https://github.com/myueqf/reader/issues</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <developer_name>myueqf</developer_name>
+  <content_rating type="oars-1.1" />
+  <releases>
+    <release version="1.0.0" date="2025-7-7">
+      <description>
+        <p>QAQ</p>
+        <ul>
+          <li>内容被猫猫刁走啦~</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+</component>

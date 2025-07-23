@@ -1,0 +1,84 @@
+.book-item {
+  padding: 12px;
+  border-radius: 8px;
+  margin: 4px;
+  background-color: alpha(@theme_bg_color, 0.5);
+  border: 1px solid alpha(@theme_fg_color, 0.1);
+}
+
+.book-item:hover {
+  background-color: alpha(@theme_selected_bg_color, 0.3);
+}
+
+.book-cover {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px alpha(@theme_fg_color, 0.2);
+}
+
+.book-title {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.book-author {
+  color: alpha(@theme_fg_color, 0.7);
+  font-size: 0.9em;
+}
+
+.book-progress {
+  font-size: 0.9em;
+  color: alpha(@theme_fg_color, 0.8);
+}
+
+.reader-content {
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.chapter-title {
+  font-weight: bold;
+  font-size: 1.3em;
+  margin-bottom: 16px;
+  color: @theme_selected_bg_color;
+}
+
+.next-chapter-button {
+  margin-top: 20px;
+  padding: 12px 24px;
+}
+
+.current-chapter-marker {
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+/* 去掉github图标的背景色～ */
+button.flat-button {
+  /* 去掉背景色 */
+  background-color: transparent;
+  /* 去掉可能的背景图 */
+  background-image: none;
+  /* 去掉阴影 */
+  box-shadow: none;
+  /* 去掉边框 */
+  border: none;
+  padding: 0;
+}
+/* 标题和副标题颜色 */
+#title-label {
+  font-size: 28px;
+  color: #392B35
+}
+#label1-label {
+  font-size: 19px;
+  color: #392B35
+}
+.text-color {
+  color: #808080;
+}
+
+.QWQ {
+  background-color: transparent;
+  box-shadow: none;
+}

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=阅读
+Name[en]=Reader
+Comment=一个简单的 TXT 电子书阅读器
+Comment[en]=A simple TXT ebook reader
+Exec=reader
+Icon=io.github.myueqf.reader
+Type=Application
+Categories=Office;Education;
+StartupNotify=true
+MimeType=text/plain;
