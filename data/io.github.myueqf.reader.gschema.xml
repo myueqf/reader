@@ -31,5 +31,8 @@
     <key name="reading-width" type="i">
       <default>800</default>
     </key>
+    <key name="recent-book-uuid" type="s">
+      <default>''</default>
+    </key>
   </schema>
 </schemalist>

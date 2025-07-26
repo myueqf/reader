@@ -205,5 +205,14 @@ namespace Reader {
             }
             return books[index];
         }
+
+        public Book? get_book_by_uuid (string uuid) {
+            foreach (var book in books) {
+                if (book.uuid == uuid) {
+                    return book;
+                }
+            }
+            return null;
+        }
     }
 }

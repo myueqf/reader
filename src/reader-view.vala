@@ -157,7 +157,10 @@ namespace Reader {
                 current_book = book;
                 current_chapter_index = int.max (0, int.min (book.chapter, book.get_chapters ().size - 1));
                 current_page_index = book.page_index;
-                
+
+                // 更新最近阅读的小说～
+                config_manager.set_recent_book (book.uuid);
+
                 // 确保内容和章节都加载了XwX
                 if (book.get_chapters ().size == 0) {
                     book.load_content ();

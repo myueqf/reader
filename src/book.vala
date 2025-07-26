@@ -60,10 +60,15 @@ namespace Reader {
                 }
                 */
 
-                if (uuid.strip () == "" || !obj.has_member ("uuid")) {
-                    warning ("UUID是空的QWQ");
+                if (obj.has_member ("uuid")) {
+                    uuid = obj.get_string_member ("uuid");
+                    if (uuid == null || uuid.strip () == "") {
+                        warning ("UUID是空的QWQ");
+                        uuid = GLib.Uuid.string_random ();
+                    }
+                } else {
+                    warning ("没有UUID嗷QAQ生成新哒～");
                     uuid = GLib.Uuid.string_random ();
-                    // uuid = "233";
                 }
 
                 /*

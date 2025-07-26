@@ -27,7 +27,7 @@ namespace Reader {
             main_stack = new Stack ();
             main_stack.set_transition_type (StackTransitionType.SLIDE_LEFT_RIGHT);
             
-            book_shelf = new BookShelf (book_manager);
+            book_shelf = new BookShelf (book_manager, config_manager);
             book_shelf.book_selected.connect (on_book_selected);
             
             reader_view = new ReaderView (book_manager, config_manager);
@@ -115,6 +115,7 @@ namespace Reader {
 
         private void on_back_to_shelf () {
             main_stack.set_visible_child_name ("shelf");
+            book_shelf.update_recent_book_button ();  // 更新最近阅读按钮～
         }
 
         public override bool close_request () {

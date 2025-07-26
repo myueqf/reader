@@ -10,6 +10,7 @@ namespace Reader {
         public bool dark_theme { get; set; }
         public string text_color { get; set; }
         public int reading_width { get; set; }
+        public string recent_book_uuid { get; set; }
         
         public signal void config_changed ();
         
@@ -21,6 +22,7 @@ namespace Reader {
             dark_theme = false;
             text_color = "#3d3846";
             reading_width = 750;
+            recent_book_uuid = "";
             
             try {
                 settings = new GLib.Settings ("io.github.myueqf.reader");
@@ -41,6 +43,8 @@ namespace Reader {
                 dark_theme = settings.get_boolean ("dark-theme");
                 text_color = settings.get_string ("text-color");
                 reading_width = settings.get_int ("reading-width");
+                var loaded_uuid = settings.get_string ("recent-book-uuid");
+                recent_book_uuid = (loaded_uuid != null) ? loaded_uuid : "";
             } catch (Error e) {
                 warning ("加载设置时出错XwX: %s", e.message);
             }
@@ -57,6 +61,7 @@ namespace Reader {
                 settings.set_boolean ("dark-theme", dark_theme);
                 settings.set_string ("text-color", text_color);
                 settings.set_int ("reading-width", reading_width);
+                settings.set_string ("recent-book-uuid", recent_book_uuid);
                 
                 config_changed ();
             } catch (Error e) {
@@ -81,6 +86,15 @@ namespace Reader {
             return "font-family: \"%s\"; font-size: %dpx; line-height: %.2f; letter-spacing: %.2fpx; color: %s;".printf (
                 font_family, font_size, line_spacing, letter_spacing, text_color
             );
+        }
+
+        public void set_recent_book (string uuid) {
+            if (uuid == null || uuid.strip () == "") {
+                warning ("UUID是空的QAQ");
+                return;
+            }
+            recent_book_uuid = uuid;
+            save_settings ();
         }
     }
 }

@@ -1,16 +1,20 @@
 using Gtk;
 using Adw;
+using Pango;
 
 namespace Reader {
     public class BookShelf : Box {
         private BookManager book_manager;
+        private ConfigManager config_manager;
         private FlowBox book_flow;
         private Gtk.HeaderBar header_bar;
+        private Button recent_book_button;
 
         public signal void book_selected (Book book);
 
-        public BookShelf (BookManager manager) {
+        public BookShelf (BookManager manager, ConfigManager config) {
             book_manager = manager;
+            config_manager = config;
 
             setup_ui ();
             setup_connections ();
@@ -97,9 +101,12 @@ namespace Reader {
             label2.get_style_context().add_class ("text-color");
             label2.set_xalign ((float) 0.08);
             sidebar.append (label2);
-            var btn1 = new Button.with_label ("木做QAQ");
-            btn1.get_style_context().add_class ("text-color");
-            sidebar.append (btn1); // 按钮1
+            recent_book_button = new Button.with_label ("木做QAQ");
+            recent_book_button.get_style_context().add_class ("text-color");
+            recent_book_button.clicked.connect (on_recent_book_clicked);
+            recent_book_button.set_hexpand (false); // 不扩展
+            recent_book_button.set_halign (Align.FILL); // 填充可用空间但是不扩展
+            sidebar.append (recent_book_button); // 按钮1
             // 占位（24px）
             var placeholder1 = new Gtk.Box (Orientation.VERTICAL, 0);
             placeholder1.height_request = 24;
@@ -236,6 +243,8 @@ namespace Reader {
 
                 book_flow.append (book_item);
             }
+
+            update_recent_book_button ();
         }
 
         private void show_delete_confirmation (Book book) {
@@ -258,6 +267,42 @@ namespace Reader {
             });
 
             dialog.present (get_root () as Gtk.Window);
+        }
+
+        private void on_recent_book_clicked () {
+            if (config_manager.recent_book_uuid == "") {
+                return;
+            }
+
+            var recent_book = book_manager.get_book_by_uuid (config_manager.recent_book_uuid);
+            if (recent_book != null) {
+                book_selected (recent_book);
+            }
+        }
+
+        public void update_recent_book_button () {
+            if (config_manager.recent_book_uuid == null || config_manager.recent_book_uuid == "") {
+                recent_book_button.set_label ("木做QAQ_1");
+                recent_book_button.set_sensitive (false);
+                return;
+            }
+
+            var recent_book = book_manager.get_book_by_uuid (config_manager.recent_book_uuid);
+            if (recent_book != null) {
+                // 限制书名长度，避免撑大侧边栏
+                string display_name = recent_book.name;
+                // 使用字符数而不是字节数来截断，避免汉字乱码
+                if (display_name.char_count () > 8) {
+                    display_name = display_name.substring (0, display_name.index_of_nth_char (8)) + "...";
+                }
+                recent_book_button.set_label (display_name);
+                recent_book_button.set_sensitive (true);
+                recent_book_button.set_tooltip_text (recent_book.name); // 完整书名作为提示
+            } else {
+                recent_book_button.set_label ("木做QAQ_2");
+                recent_book_button.set_sensitive (false);
+                recent_book_button.set_tooltip_text ("");
+            }
         }
     }
 }
