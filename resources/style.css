@@ -68,11 +68,11 @@ button.flat-button {
 /* 标题和副标题颜色 */
 #title-label {
   font-size: 28px;
-  color: #392B35
+  opacity: 0.8;
 }
 #label1-label {
   font-size: 19px;
-  color: #392B35
+  opacity: 0.8;
 }
 .text-color {
   color: #808080;
