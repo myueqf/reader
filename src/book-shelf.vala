@@ -282,7 +282,7 @@ namespace Reader {
 
         public void update_recent_book_button () {
             if (config_manager.recent_book_uuid == null || config_manager.recent_book_uuid == "") {
-                recent_book_button.set_label ("木做QAQ_1");
+                recent_book_button.set_label ("木有阅读记录");
                 recent_book_button.set_sensitive (false);
                 return;
             }
@@ -299,7 +299,7 @@ namespace Reader {
                 recent_book_button.set_sensitive (true);
                 recent_book_button.set_tooltip_text (recent_book.name); // 完整书名作为提示
             } else {
-                recent_book_button.set_label ("木做QAQ_2");
+                recent_book_button.set_label ("找不到该书籍");
                 recent_book_button.set_sensitive (false);
                 recent_book_button.set_tooltip_text ("");
             }
