@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix="/io/github/myueqf/reader">
     <file>style.css</file>
+    <file>dark.css</file>
     <file>default-cover.png</file>
     <file>icon_github.svg</file>
   </gresource>

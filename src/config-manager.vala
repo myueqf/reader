@@ -2,6 +2,7 @@
 namespace Reader {
     public class ConfigManager : GLib.Object {
         private GLib.Settings settings;
+        private Gtk.CssProvider? dark_provider = null;
         
         public string font_family { get; set; }
         public int font_size { get; set; }
@@ -76,6 +77,24 @@ namespace Reader {
                     style_manager.set_color_scheme (Adw.ColorScheme.FORCE_DARK);
                 } else {
                     style_manager.set_color_scheme (Adw.ColorScheme.FORCE_LIGHT);
+                }
+
+                /* 暗色模式css */
+                if (dark_provider != null) {
+                    Gtk.StyleContext.remove_provider_for_display (
+                        Gdk.Display.get_default (),
+                        dark_provider
+                    );
+                    dark_provider = null;
+                }
+                if (style_manager.get_dark ()) {
+                    dark_provider = new Gtk.CssProvider ();
+                    dark_provider.load_from_resource ("/io/github/myueqf/reader/dark.css");
+                    Gtk.StyleContext.add_provider_for_display (
+                        Gdk.Display.get_default (),
+                        dark_provider,
+                        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+                    );
                 }
             } catch (Error e) {
                 warning ("应用主题出错XwX: %s", e.message);

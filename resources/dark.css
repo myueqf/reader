@@ -1,0 +1,77 @@
+@define-color theme_bg_color              #1e1e2e;  /* 最底层背景 */
+@define-color theme_base_color            #252535;  /* 面板、容器背景 */
+@define-color theme_shade_color           #2a2a3a;  /* 滚动条、分隔条、顶栏 */
+@define-color theme_fg_color              #d3d3d3;  /* 文字前景 */
+@define-color theme_selected_bg_color     #3a3a4a;  /* 选中项背景 */
+@define-color theme_selected_fg_color     #ffffff;  /* 选中项文字 */
+
+window, .application-window {
+    background-image: none;
+    background-color: @theme_bg_color;
+    color: @theme_fg_color;
+}
+
+view, treeview {
+    selection-background-color: @theme_selected_bg_color;
+    selection-color: @theme_selected_fg_color;
+}
+
+headerbar {
+    background-image: none;
+    background-color: @theme_shade_color;
+    color: @theme_fg_color;
+}
+
+separator {
+    background-color: @theme_shade_color;
+}
+
+.QWQ {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* 章节列表样式 */
+listview, list {
+    background-color: @theme_base_color;
+    color: @theme_fg_color;
+}
+
+listview row, list row {
+    background-color: transparent;
+    color: @theme_fg_color;
+}
+
+listview row:selected, list row:selected {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+/* 当前章节标记 */
+/*
+.current-chapter-marker {
+    color: @theme_selected_fg_color;
+}
+*/
+
+/* 章节标题 */
+.heading {
+    color: @theme_fg_color;
+}
+
+/* 菜单样式 */
+popover contents, .popover contents {
+    background-color: @theme_base_color;
+    color: @theme_fg_color;
+}
+
+popover modelbutton, .popover modelbutton {
+    background-color: transparent;
+    color: @theme_fg_color;
+}
+
+popover modelbutton:hover, .popover modelbutton:hover {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+

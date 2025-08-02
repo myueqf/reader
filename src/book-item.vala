@@ -153,6 +153,8 @@ namespace Reader {
             menu.set_menu_model (menu_model);
             menu.set_parent (this);
             menu.set_pointing_to ({ (int) x, (int) y, 1, 1 });
+            // 隐藏小箭头
+            // menu.set_has_arrow (false);
             menu.popup ();
         }
     }
