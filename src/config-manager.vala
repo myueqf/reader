@@ -103,14 +103,6 @@ namespace Reader {
                         dark_provider,
                         Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
                     );
-                } else {
-                    if (dark_provider != null) {
-                        Gtk.StyleContext.remove_provider_for_display(
-                            Gdk.Display.get_default(),
-                            dark_provider
-                        );
-                        dark_provider = null;
-                    }
                 }
             } catch (Error e) {
                 warning ("应用主题出错QAQ: %s", e.message);
