@@ -9,6 +9,7 @@ namespace Reader {
         public double line_spacing { get; set; }
         public double letter_spacing { get; set; }
         public bool dark_theme { get; set; }
+        public bool css_theme { get; set; }
         public string text_color { get; set; }
         public int reading_width { get; set; }
         public string recent_book_uuid { get; set; }
@@ -21,6 +22,7 @@ namespace Reader {
             line_spacing = 2.2;
             letter_spacing = 0.0;
             dark_theme = false;
+            css_theme = false;
             text_color = "#3d3846";
             reading_width = 750;
             recent_book_uuid = "";
@@ -42,6 +44,7 @@ namespace Reader {
                 line_spacing = settings.get_double ("line-spacing");
                 letter_spacing = settings.get_double ("letter-spacing");
                 dark_theme = settings.get_boolean ("dark-theme");
+                css_theme = settings.get_boolean ("css-theme");
                 text_color = settings.get_string ("text-color");
                 reading_width = settings.get_int ("reading-width");
                 var loaded_uuid = settings.get_string ("recent-book-uuid");
@@ -60,6 +63,7 @@ namespace Reader {
                 settings.set_double ("line-spacing", line_spacing);
                 settings.set_double ("letter-spacing", letter_spacing);
                 settings.set_boolean ("dark-theme", dark_theme);
+                settings.set_boolean ("css-theme", css_theme);
                 settings.set_string ("text-color", text_color);
                 settings.set_int ("reading-width", reading_width);
                 settings.set_string ("recent-book-uuid", recent_book_uuid);
@@ -79,25 +83,28 @@ namespace Reader {
                     style_manager.set_color_scheme (Adw.ColorScheme.FORCE_LIGHT);
                 }
 
-                /* 暗色模式css */
-                if (dark_provider != null) {
-                    Gtk.StyleContext.remove_provider_for_display (
-                        Gdk.Display.get_default (),
-                        dark_provider
-                    );
-                    dark_provider = null;
-                }
-                if (style_manager.get_dark ()) {
-                    dark_provider = new Gtk.CssProvider ();
-                    dark_provider.load_from_resource ("/io/github/myueqf/reader/dark.css");
-                    Gtk.StyleContext.add_provider_for_display (
-                        Gdk.Display.get_default (),
-                        dark_provider,
-                        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-                    );
+                /* 好看的配色～ */
+                if (css_theme == true) {
+                    if (style_manager.get_dark ()) {
+                        dark_provider = new Gtk.CssProvider ();
+                        dark_provider.load_from_resource ("/io/github/myueqf/reader/dark.css");
+                        Gtk.StyleContext.add_provider_for_display (
+                            Gdk.Display.get_default (),
+                            dark_provider,
+                            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+                        );
+                    } else {
+                        dark_provider = new Gtk.CssProvider ();
+                        dark_provider.load_from_resource ("/io/github/myueqf/reader/QAQ.css");
+                        Gtk.StyleContext.add_provider_for_display (
+                            Gdk.Display.get_default (),
+                            dark_provider,
+                            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+                        );
+                    }
                 }
             } catch (Error e) {
-                warning ("应用主题出错XwX: %s", e.message);
+                warning ("应用主题出错QAQ: %s", e.message);
             }
         }
         

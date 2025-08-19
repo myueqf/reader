@@ -25,6 +25,9 @@
     <key name="dark-theme" type="b">
       <default>false</default>
     </key>
+    <key name="css-theme" type="b">
+      <default>false</default>
+    </key>
     <key name="text-color" type="s">
       <default>'#000000'</default>
     </key>

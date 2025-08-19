@@ -9,6 +9,7 @@ namespace Reader {
         private SpinButton line_spacing_spin;
         private SpinButton letter_spacing_spin;
         private Switch dark_theme_switch;
+        private Switch css_theme_switch;
         private Button color_button;
         private SpinButton reading_width_spin;
         private string selected_font_family;
@@ -132,6 +133,16 @@ namespace Reader {
             dark_theme_row.add_suffix (dark_theme_switch);
             dark_theme_row.set_activatable_widget (dark_theme_switch);
             theme_group.add (dark_theme_row);
+
+            var css_theme_row = new Adw.ActionRow ();
+            css_theme_row.set_title ("好看的配色～");
+            css_theme_row.set_subtitle ("好看哒～");
+
+            css_theme_switch = new Switch ();
+            css_theme_switch.set_valign (Align.CENTER);
+            css_theme_row.add_suffix (css_theme_switch);
+            css_theme_row.set_activatable_widget (css_theme_switch);
+            theme_group.add (css_theme_row);
             
             var color_row = new Adw.ActionRow ();
             color_row.set_title ("文字颜色");
@@ -156,6 +167,7 @@ namespace Reader {
             line_spacing_spin.set_value (config_manager.line_spacing);
             letter_spacing_spin.set_value (config_manager.letter_spacing);
             dark_theme_switch.set_active (config_manager.dark_theme);
+            css_theme_switch.set_active (config_manager.css_theme);
             reading_width_spin.set_value (config_manager.reading_width);
             
             selected_color = config_manager.text_color;
@@ -167,6 +179,7 @@ namespace Reader {
             config_manager.line_spacing = line_spacing_spin.get_value ();
             config_manager.letter_spacing = letter_spacing_spin.get_value ();
             config_manager.dark_theme = dark_theme_switch.get_active ();
+            config_manager.css_theme = css_theme_switch.get_active ();
             config_manager.text_color = selected_color;
             config_manager.reading_width = (int) reading_width_spin.get_value ();
             
