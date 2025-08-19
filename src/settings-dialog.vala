@@ -19,7 +19,7 @@ namespace Reader {
             Object (
                 title: "首选项",
                 default_width: 500,
-                default_height: 612,
+                default_height: 678,
                 modal: true,
                 transient_for: parent
             );
