@@ -84,23 +84,32 @@ namespace Reader {
                 }
 
                 /* 好看的配色～ */
-                if (css_theme == true) {
-                    if (style_manager.get_dark ()) {
-                        dark_provider = new Gtk.CssProvider ();
-                        dark_provider.load_from_resource ("/io/github/myueqf/reader/dark.css");
-                        Gtk.StyleContext.add_provider_for_display (
-                            Gdk.Display.get_default (),
-                            dark_provider,
-                            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+                if (dark_provider != null) {
+                    Gtk.StyleContext.remove_provider_for_display (
+                        Gdk.Display.get_default (),
+                        dark_provider
+                    );
+                    dark_provider = null;
+                }
+                if (css_theme) {
+                    string css_resource = style_manager.get_dark()
+                        ? "/io/github/myueqf/reader/dark.css"
+                        : "/io/github/myueqf/reader/QAQ.css";
+
+                    dark_provider = new Gtk.CssProvider();
+                    dark_provider.load_from_resource(css_resource);
+                    Gtk.StyleContext.add_provider_for_display(
+                        Gdk.Display.get_default(),
+                        dark_provider,
+                        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+                    );
+                } else {
+                    if (dark_provider != null) {
+                        Gtk.StyleContext.remove_provider_for_display(
+                            Gdk.Display.get_default(),
+                            dark_provider
                         );
-                    } else {
-                        dark_provider = new Gtk.CssProvider ();
-                        dark_provider.load_from_resource ("/io/github/myueqf/reader/QAQ.css");
-                        Gtk.StyleContext.add_provider_for_display (
-                            Gdk.Display.get_default (),
-                            dark_provider,
-                            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-                        );
+                        dark_provider = null;
                     }
                 }
             } catch (Error e) {
