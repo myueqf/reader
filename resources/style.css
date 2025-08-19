@@ -57,7 +57,7 @@
 button.flat-button {
   /* 去掉背景色 */
   background-color: transparent;
-  /* 去掉可能的背景图 */
+  /* 去掉背景 */
   background-image: none;
   /* 去掉阴影 */
   box-shadow: none;
@@ -75,7 +75,7 @@ button.flat-button {
   opacity: 0.8;
 }
 .text-color {
-  color: #808080;
+/*  color: #808080; */
 }
 
 .QWQ {

@@ -1,9 +1,9 @@
-@define-color theme_bg_color              #1e1e2e;  /* 最底层背景 */
-@define-color theme_base_color            #252535;  /* 面板、容器背景 */
-@define-color theme_shade_color           #2a2a3a;  /* 滚动条、分隔条、顶栏 */
-@define-color theme_fg_color              #d3d3d3;  /* 文字前景 */
-@define-color theme_selected_bg_color     #3a3a4a;  /* 选中项背景 */
-@define-color theme_selected_fg_color     #ffffff;  /* 选中项文字 */
+@define-color theme_bg_color              #f8e6e6;  /* 最底层背景 */
+@define-color theme_base_color            #f8e6e6;  /* 面板、容器背景 */
+@define-color theme_shade_color           #f8e6e6;  /* 滚动条、顶栏 */
+@define-color theme_fg_color              #90707d;  /* 文字前景 */
+@define-color theme_selected_bg_color     #f8ccce;  /* 选中项背景 */
+@define-color theme_selected_fg_color     #705560;  /* 选中项文字 */
 
 window, .application-window {
     background-image: none;
@@ -12,8 +12,13 @@ window, .application-window {
 }
 
 view, treeview {
-    selection-background-color: @theme_selected_bg_color;
-    selection-color: @theme_selected_fg_color;
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+view:selected, treeview:selected {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
 }
 
 headerbar {
@@ -23,12 +28,16 @@ headerbar {
 }
 
 separator {
-    background-color: @theme_shade_color;
+   /* background-color: #b398a1; */
 }
 
 .QWQ {
   background-color: transparent;
   box-shadow: none;
+}
+
+.text-color {
+  color: #90707d;
 }
 
 /* 章节列表样式 */
@@ -48,11 +57,9 @@ listview row:selected, list row:selected {
 }
 
 /* 当前章节标记 */
-/*
 .current-chapter-marker {
     color: @theme_selected_fg_color;
 }
-*/
 
 /* 章节标题 */
 .heading {
