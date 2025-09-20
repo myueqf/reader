@@ -1,0 +1,36 @@
+name: Build Flatpak
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Install Flatpak and dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y flatpak flatpak-builder
+        sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+        sudo flatpak install -y org.gnome.Platform//48 org.gnome.Sdk//48
+        
+    - name: Make build script executable
+      run: chmod +x build-flatpak.sh
+      
+    - name: Build Flatpak
+      run: ./build-flatpak.sh
+      
+    - name: Upload Flatpak bundle as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: flatpak-bundle
+        path: "*.flatpak"
+        retention-days: 30
