@@ -38,6 +38,9 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
+  	permissions:
+	   contents: write
+ 	   releases: write
         with:
           files: |
             *.flatpak
